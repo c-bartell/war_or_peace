@@ -30,4 +30,10 @@ class DeckTest < Minitest::Test
     assert_equal 3, deck.rank_of_card_at(1)
     assert_equal 1, deck.rank_of_card_at(2)
   end
+
+  def test_high_ranking_cards
+    cards = cards_setup
+    deck = Deck.new(cards)
+    assert_equal [cards[0]], deck.high_ranking_cards
+  end
 end
