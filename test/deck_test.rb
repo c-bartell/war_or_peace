@@ -22,4 +22,12 @@ class DeckTest < Minitest::Test
     deck = Deck.new(cards)
     assert_equal cards, deck.cards
   end
+
+  def test_rank_of_card_at
+    cards = cards_setup
+    deck = Deck.new(cards)
+    assert_equal 12, deck.rank_of_card_at(0)
+    assert_equal 3, deck.rank_of_card_at(1)
+    assert_equal 1, deck.rank_of_card_at(2)
+  end
 end
