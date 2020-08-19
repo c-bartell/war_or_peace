@@ -13,11 +13,13 @@ class DeckTest < Minitest::Test
 
   def test_it_exists
     cards = cards_setup
-    deck = Deck.new(cards_setup)
+    deck = Deck.new(cards)
     assert_instance_of Deck, deck
   end
 
   def test_has_cards
-
+    cards = cards_setup
+    deck = Deck.new(cards)
+    assert_equal cards, deck.cards
   end
 end
