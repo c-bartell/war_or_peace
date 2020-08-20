@@ -36,12 +36,10 @@ class DeckTest < Minitest::Test
     deck = Deck.new(cards)
     assert_equal [cards[0], cards[2]], deck.high_ranking_cards
   end
-  # 
-  # def test_percent_high_ranking
-  #   skip
-  #   cards = cards_setup
-  #   deck = Deck.new(cards)
-  #
-  #   assert_equal 66.67, deck.percent_high_ranking
-  # end
+
+  def test_percent_high_ranking
+    cards = cards_setup
+    deck = Deck.new(cards)
+    assert_equal 66.67, deck.percent_high_ranking
+  end
 end
