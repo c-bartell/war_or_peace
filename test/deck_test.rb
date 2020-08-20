@@ -8,6 +8,7 @@ class DeckTest < Minitest::Test
     @card_1 = Card.new(:diamond, 'Queen', 12)
     @card_2 = Card.new(:spade, '3', 3)
     @card_3 = Card.new(:heart, 'Ace', 14)
+    @card_4 = Card.new(:club, '5', 5)
     @deck = Deck.new([@card_1, @card_2, @card_3])
   end
 
@@ -27,10 +28,22 @@ class DeckTest < Minitest::Test
 
   def test_high_ranking_cards
     assert_equal [@card_1, @card_3], @deck.high_ranking_cards
+
+    @deck = Deck.new([@card_2, @card_4])
+    assert_equal [], @deck.high_ranking_cards
   end
 
   def test_percent_high_ranking
-    assert_equal 66.67, @deck.percent_high_ranking    # More cases
+    assert_equal 66.67, @deck.percent_high_ranking
+
+    @deck = Deck.new([@card_3, @card_2, @card_4])
+    assert_equal 33.33, @deck.percent_high_ranking
+
+    @deck = Deck.new([@card_2, @card_4])
+    assert_equal 0.00, @deck.percent_high_ranking
+
+    @deck = Deck.new([@card_1, @card_3])
+    assert_equal 100, @deck.percent_high_ranking
   end
 
   def test_remove_card
@@ -40,10 +53,10 @@ class DeckTest < Minitest::Test
   end
 
   def test_add_card
-    new_card = Card.new(:club, '5', 5)
     assert_equal [@card_1, @card_2, @card_3], @deck.cards
 
-    @deck.add_card(new_card)
-    assert_equal [@card_1, @card_2, @card_3, new_card], @deck.cards
+    @deck.add_card(@card_4)
+
+    assert_equal [@card_1, @card_2, @card_3, @card_4], @deck.cards
   end
 end
