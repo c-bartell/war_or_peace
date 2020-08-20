@@ -18,8 +18,12 @@ class Deck
   def percent_high_ranking
     number_of_high_ranking_cards = high_ranking_cards.count.to_f
     total_cards = cards.count.to_f
-
     percent = (number_of_high_ranking_cards / total_cards) * 100
+
     percent.round(2)
+  end
+
+  def remove_card
+    @cards.shift
   end
 end
