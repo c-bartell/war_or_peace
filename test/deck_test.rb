@@ -19,7 +19,7 @@ class DeckTest < Minitest::Test
 
   def test_it_has_cards
     cards = cards_setup
-    deck = Deck.new(cards)
+    deck = Deck.new(cards.dup)
     assert_equal cards, deck.cards
   end
 
@@ -33,7 +33,7 @@ class DeckTest < Minitest::Test
 
   def test_high_ranking_cards
     cards = cards_setup
-    deck = Deck.new(cards)
+    deck = Deck.new(cards.dup)
     assert_equal [cards[0], cards[2]], deck.high_ranking_cards
   end
 
