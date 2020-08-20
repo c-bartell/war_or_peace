@@ -24,6 +24,9 @@ class DeckTest < Minitest::Test
     assert_equal 12, @deck.rank_of_card_at(0)
     assert_equal 3, @deck.rank_of_card_at(1)
     assert_equal 14, @deck.rank_of_card_at(2)
+    assert_equal 14, @deck.rank_of_card_at(-1)
+    assert_nil @deck.rank_of_card_at(15)
+    assert_nil @deck.rank_of_card_at(-20)
   end
 
   def test_high_ranking_cards
@@ -50,13 +53,17 @@ class DeckTest < Minitest::Test
     assert_equal [@card_1, @card_2, @card_3], @deck.cards
     assert_equal @card_1, @deck.remove_card
     assert_equal [@card_2, @card_3], @deck.cards
+    assert_equal @card_2, @deck.remove_card
+    assert_equal [@card_3], @deck.cards
+    assert_equal @card_3, @deck.remove_card
+    assert_equal [], @deck.cards
+    assert_nil @deck.remove_card
   end
 
   def test_add_card
     assert_equal [@card_1, @card_2, @card_3], @deck.cards
 
     @deck.add_card(@card_4)
-
     assert_equal [@card_1, @card_2, @card_3, @card_4], @deck.cards
   end
 end
