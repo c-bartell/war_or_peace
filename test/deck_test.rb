@@ -51,4 +51,16 @@ class DeckTest < Minitest::Test
     assert_equal cards[0], deck.remove_card
     assert_equal [cards[1], cards[2]], deck.cards
   end
+
+  def test_add_card
+    cards = cards_setup
+    new_card = Card.new(:club, '5', 5)
+    deck = Deck.new(cards.dup)
+
+    assert_equal cards, deck.cards
+
+    deck.add_card(new_card)
+
+    assert_equal (cards + [new_card]), deck.cards
+  end
 end
