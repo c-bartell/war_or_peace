@@ -41,5 +41,13 @@ def TurnTest < Minitest::Test
     assert_instance_of Turn,   @turn_mutually_assured_destruction
   end
 
-  
+  def test_it_has_players
+    assert_equal @player_1, @turn_basic.player1
+    assert_equal @player_1, @turn_war.player1
+    assert_equal @player_1, @turn_mutually_assured_destruction.player1
+
+    assert_equal @player_2_basic, @turn_basic.player2
+    assert_equal @player_2_war, @turn_war.player2
+    assert_equal @player_2_mutually_assured_destruction, @turn_mutually_assured_destruction.player2
+  end
 end
