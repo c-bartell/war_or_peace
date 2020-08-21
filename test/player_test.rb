@@ -23,7 +23,6 @@ class PlayerTest < Minitest::Test
   end
 
   def test_it_can_lose
-    # skip
     assert_equal false, @player.has_lost?
     @player.deck.remove_card
     assert_equal false, @player.has_lost?
