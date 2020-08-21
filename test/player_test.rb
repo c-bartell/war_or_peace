@@ -12,4 +12,8 @@ class PlayerTest < Minitest::Test
     @deck = Deck.new([@card_1, @card_2, @card_3])
     @player = Player.new('Clarissa', @deck)
   end
+
+  def test_it_exists
+    assert_instance_of Player, @player
+  end
 end
