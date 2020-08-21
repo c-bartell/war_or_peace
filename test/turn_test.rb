@@ -50,4 +50,10 @@ def TurnTest < Minitest::Test
     assert_equal @player_2_war, @turn_war.player2
     assert_equal @player_2_mutually_assured_destruction, @turn_mutually_assured_destruction.player2
   end
+
+  def test_it_can_determine_type
+    assert_equal :basic, @turn_basic.type
+    assert_equal :war, @turn_war.type
+    assert_equal :mutually_assured_destruction, @turn_mutually_assured_destruction.type
+  end
 end
