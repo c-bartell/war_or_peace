@@ -15,14 +15,23 @@ def TurnTest < Minitest::Test
     @card_6 = Card.new(:diamond, 'Queen', 12)
     @card_7 = Card.new(:heart, '3', 3)
     @card_8 = Card.new(:diamond, '2', 2)
+    @card_9 = Card.new(:diamond, '8', 8)
 
-    # @basic_deck_1 = Deck.new([@card_1, @card_2, @card_5, @card_8])
-    # @basic_deck_2 = Deck.new([@card_3, @card_4, @card_6, @card_7])
-    # @war_deck_1   = Deck.new([@card_, @card, @card, @card])
-    # @war_deck_2   = Deck.new([@card, @card, @card, @card])
-    # @m_a_d_deck_1 = Deck.new([@card, @card, @card, @card])
-    # @m_a_d_deck_2 = Deck.new([@card, @card, @card, @card])
+    @name_1 = 'Megan'
+    @name_2 = 'Aurora'
 
+    @deck_1 = Deck.new([@card_1, @card_2, @card_5, @card_8])
+    @deck_2_basic = Deck.new([@card_3, @card_4, @card_6, @card_7])
+    @deck_2_war = Deck.new([@card_4, @card_3, @card_6, @card_7])
+    @deck_2_mutually_assured_destruction = Deck.new([@card_4, @card_3, @card_9, @card_7])
 
+    @player_1 = Player.new(@name_1, @deck_1)
+    @player_2_basic = Player.new(@name_2, @deck_2_basic)
+    @player_2_war = Player.new(@name_2, @deck_2_war)
+    @player_2_mutually_assured_destruction = Player.new(@name_2, @deck_2_mutually_assured_destruction)
+
+    @basic_turn = Turn.new(@player_1, @player_2_basic)
+    @war_turn_war = Turn.new(@player_1, @player_2_war)
+    @mutually_assured_destruction_turn = Turn.new(@player_1, @player_2_mutually_assured_destruction)
   end
 end
