@@ -30,8 +30,16 @@ def TurnTest < Minitest::Test
     @player_2_war = Player.new(@name_2, @deck_2_war)
     @player_2_mutually_assured_destruction = Player.new(@name_2, @deck_2_mutually_assured_destruction)
 
-    @basic_turn = Turn.new(@player_1, @player_2_basic)
-    @war_turn_war = Turn.new(@player_1, @player_2_war)
-    @mutually_assured_destruction_turn = Turn.new(@player_1, @player_2_mutually_assured_destruction)
+    @turn_basic = Turn.new(@player_1, @player_2_basic)
+    @turn_war = Turn.new(@player_1, @player_2_war)
+    @turn_mutually_assured_destruction = Turn.new(@player_1, @player_2_mutually_assured_destruction)
   end
+
+  def test_it_exists
+    assert_instance_of Turn, @turn_basic
+    assert_instance_of Turn, @turn_war
+    assert_instance_of Turn,   @turn_mutually_assured_destruction
+  end
+
+  
 end
