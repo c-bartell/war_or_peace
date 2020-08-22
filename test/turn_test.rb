@@ -62,4 +62,10 @@ def TurnTest < Minitest::Test
     assert_equal @player_2, @turn_war.winner
     assert_equal "No Winner", @turn_mutually_assured_destruction
   end
+
+  def test_it_has_spoils
+    assert_equal [], @turn_basic.spoils_of_war
+    assert_equal [], @turn_basic.spoils_of_war
+    assert_equal [], @turn_basic.spoils_of_war
+  end
 end
