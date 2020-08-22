@@ -67,9 +67,8 @@ class TurnTest < Minitest::Test
   end
 
   def test_it_can_determine_winner
-    skip
     assert_equal @player_1, @turn_basic.winner
-    assert_equal @player_2, @turn_war.winner
+    assert_equal @player_2_war, @turn_war.winner
     assert_equal "No Winner", @turn_mutually_assured_destruction.winner
   end
 
