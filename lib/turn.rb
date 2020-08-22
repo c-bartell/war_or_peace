@@ -21,13 +21,13 @@ class Turn
     players.last
   end
 
-  # def winner
-  #   if type == :mutually_assured_destruction
-  #     "No Winner"
-  #   elsif type == :war
-  #     players = [@player1, @player2].sort_by { |player| player.deck.rank_of_card_at(2) }
-  #   else    # :basic case
-  #     #then
-  #   end
-  # end
+  def winner
+    if type == :mutually_assured_destruction
+      "No Winner"
+    elsif type == :war
+      bigger_player_at(2)
+    else    # :basic case
+      bigger_player_at(0)
+    end
+  end
 end
