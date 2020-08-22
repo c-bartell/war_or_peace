@@ -60,12 +60,29 @@ def TurnTest < Minitest::Test
   def test_it_can_determine_winner
     assert_equal @player_1, @turn_basic.winner
     assert_equal @player_2, @turn_war.winner
-    assert_equal "No Winner", @turn_mutually_assured_destruction
+    assert_equal "No Winner", @turn_mutually_assured_destruction.winner
   end
 
   def test_it_has_spoils
     assert_equal [], @turn_basic.spoils_of_war
-    assert_equal [], @turn_basic.spoils_of_war
-    assert_equal [], @turn_basic.spoils_of_war
+    assert_equal [], @turn_war.spoils_of_war
+    assert_equal [], @turn_mutually_assured_destruction.spoils_of_war
+  end
+
+  def test_it_piles_cards
+    @turn_basic.pile_cards
+    assert_equal [@card1, @card_3], @turn_basic.spoils_of_war
+    assert_equal [@card_2, @card_5, @card_8], @turn_basic.player1.cards
+    assert_equal [@card_4, @card_6, @card_7], @turn_basic.player1.cards
+
+    @turn_war.pile_cards
+    assert_equal [@card_1, @card_2, @card_5, @card_4, @card_3, @card_6], @turn_war.spoils_of_war
+    assert_equal [@card_8], @turn_basic.player1.cards
+    assert_equal [@card_7], @turn_basic.player1.cards
+
+    @turn_mutually_assured_destruction.pile_cards
+    assert_equal [], @turn_mutually_assured_destruction.spoils_of_war
+    assert_equal [@card_8], @turn_basic.player1.cards
+    assert_equal [@card_7], @turn_basic.player1.cards
   end
 end
