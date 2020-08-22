@@ -56,4 +56,10 @@ def TurnTest < Minitest::Test
     assert_equal :war, @turn_war.type
     assert_equal :mutually_assured_destruction, @turn_mutually_assured_destruction.type
   end
+
+  def test_it_can_determine_winner
+    assert_equal @player_1, @turn_basic.winner
+    assert_equal @player_2, @turn_war.winner
+    assert_equal "No Winner", @turn_mutually_assured_destruction
+  end
 end
