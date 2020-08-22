@@ -42,7 +42,6 @@ class TurnTest < Minitest::Test
   end
 
   def test_it_has_players
-    skip
     assert_equal @player_1, @turn_basic.player1
     assert_equal @player_1, @turn_war.player1
     assert_equal @player_1, @turn_mutually_assured_destruction.player1
@@ -53,7 +52,6 @@ class TurnTest < Minitest::Test
   end
 
   def test_it_can_determine_type
-    skip
     assert_equal :basic, @turn_basic.type
     assert_equal :war, @turn_war.type
     assert_equal :mutually_assured_destruction, @turn_mutually_assured_destruction.type
