@@ -7,7 +7,7 @@ class Turn
   end
 
   def type
-    if (player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)) && (player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2))
+    if ( player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) ) && ( player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2) )
       :mutually_assured_destruction
     elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
       :war
@@ -15,4 +15,19 @@ class Turn
       :basic
     end
   end
+
+  def bigger_player_at(index)
+    players = [player1, player2].sort_by { |player| player.deck.rank_of_card_at(index) }
+    players.last
+  end
+
+  # def winner
+  #   if type == :mutually_assured_destruction
+  #     "No Winner"
+  #   elsif type == :war
+  #     players = [@player1, @player2].sort_by { |player| player.deck.rank_of_card_at(2) }
+  #   else    # :basic case
+  #     #then
+  #   end
+  # end
 end
