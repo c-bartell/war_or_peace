@@ -71,18 +71,53 @@ def TurnTest < Minitest::Test
 
   def test_it_piles_cards
     @turn_basic.pile_cards
+
     assert_equal [@card1, @card_3], @turn_basic.spoils_of_war
-    assert_equal [@card_2, @card_5, @card_8], @turn_basic.player1.cards
-    assert_equal [@card_4, @card_6, @card_7], @turn_basic.player1.cards
+    assert_equal [@card_2, @card_5, @card_8], @turn_basic.player1.deck
+    assert_equal [@card_4, @card_6, @card_7], @turn_basic.player2.deck
 
     @turn_war.pile_cards
+
     assert_equal [@card_1, @card_2, @card_5, @card_4, @card_3, @card_6], @turn_war.spoils_of_war
-    assert_equal [@card_8], @turn_basic.player1.cards
-    assert_equal [@card_7], @turn_basic.player1.cards
+    assert_equal [@card_8], @turn_war.player1.deck
+    assert_equal [@card_7], @turn_war.player2.deck
 
     @turn_mutually_assured_destruction.pile_cards
+
     assert_equal [], @turn_mutually_assured_destruction.spoils_of_war
-    assert_equal [@card_8], @turn_basic.player1.cards
-    assert_equal [@card_7], @turn_basic.player1.cards
+    assert_equal [@card_8], @turn_mutually_assured_destruction.player1.deck
+    assert_equal [@card_7], @turn_mutually_assured_destruction.player2.deck
+  end
+
+  def test_it_awards_spoils
+    @turn_basic.pile_cards
+
+    assert_equal [@card_2, @card_5, @card_8], @turn_basic.player1.deck
+    assert_equal [@card_4, @card_6, @card_7], @turn_basic.player2.deck
+
+    @turn_basic.award_spoils
+
+    assert_equal [@card_2, @card_5, @card_8, @card_1, @card_3], @turn_basic.player1.deck
+    assert_equal [@card_4, @card_6, @card_7], @turn_basic.player2.deck
+
+    @turn_war.pile_cards
+
+    assert_equal [@card_8], @turn_basic.player1.deck
+    assert_equal [@card_7], @turn_basic.player2.deck
+
+    @turn_war.award_spoils
+
+    assert_equal [@card_8], @turn_war.player1.deck
+    assert_equal [@card_7, @card_1, @card_2, @card_5, @card_4, @card_3, @card_6], @turn_war.player2.deck
+
+    @turn_mutually_assured_destruction.pile_cards
+
+    assert_equal [@card_8], @turn_mutually_assured_destruction.player1.deck
+    assert_equal [@card_7], @turn_mutually_assured_destruction.player2.deck
+
+    @turn_mutually_assured_destruction.award_spoils
+
+    assert_equal [@card_8], @turn_mutually_assured_destruction.player1.deck
+    assert_equal [@card_7], @turn_mutually_assured_destruction.player2.deck
   end
 end
