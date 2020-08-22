@@ -73,7 +73,6 @@ class TurnTest < Minitest::Test
   end
 
   def test_it_has_spoils
-    skip
     assert_equal [], @turn_basic.spoils_of_war
     assert_equal [], @turn_war.spoils_of_war
     assert_equal [], @turn_mutually_assured_destruction.spoils_of_war
