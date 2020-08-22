@@ -32,7 +32,7 @@ class Turn
     end
   end
 
-  def pile_cards
+  def pile_cards                                    # Refactor with helper methods?
     if type == :mutually_assured_destruction
       3.times do
         player1.deck.remove_card
@@ -51,7 +51,12 @@ class Turn
     end
   end
 
-  # def award_spoils
-  #
-  # end
+  def award_spoils
+    winning_player = winner
+    pile_cards
+    number_of_spoils = spoils_of_war.length
+    number_of_spoils.times do
+      winning_player.deck.add_card( @spoils_of_war.shift )
+    end
+  end
 end
