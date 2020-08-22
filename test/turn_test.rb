@@ -38,7 +38,7 @@ class TurnTest < Minitest::Test
   def test_it_exists
     assert_instance_of Turn, @turn_basic
     assert_instance_of Turn, @turn_war
-    assert_instance_of Turn,   @turn_mutually_assured_destruction
+    assert_instance_of Turn, @turn_mutually_assured_destruction
   end
 
   def test_it_has_players
@@ -55,6 +55,15 @@ class TurnTest < Minitest::Test
     assert_equal :basic, @turn_basic.type
     assert_equal :war, @turn_war.type
     assert_equal :mutually_assured_destruction, @turn_mutually_assured_destruction.type
+  end
+
+  def test_it_can_determine_bigger_player_at
+    assert_equal @player_1, @turn_basic.bigger_player_at(0)
+    assert_equal @player_2_basic, @turn_basic.bigger_player_at(2)
+    assert_equal @player_1, @turn_war.bigger_player_at(1)
+    assert_equal @player_2_war, @turn_war.bigger_player_at(3)
+    assert_equal @player_1, @turn_mutually_assured_destruction.bigger_player_at(1)
+    assert_equal @player_2_mutually_assured_destruction, @turn_mutually_assured_destruction.bigger_player_at(3)
   end
 
   def test_it_can_determine_winner
