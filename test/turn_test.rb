@@ -5,7 +5,7 @@ require './lib/deck'
 require './lib/player'
 require './lib/turn'
 
-def TurnTest < Minitest::Test
+class TurnTest < Minitest::Test
   def setup
     @card_1 = Card.new(:heart, 'Jack', 11)
     @card_2 = Card.new(:heart, '10', 10)
@@ -42,6 +42,7 @@ def TurnTest < Minitest::Test
   end
 
   def test_it_has_players
+    skip
     assert_equal @player_1, @turn_basic.player1
     assert_equal @player_1, @turn_war.player1
     assert_equal @player_1, @turn_mutually_assured_destruction.player1
@@ -52,24 +53,28 @@ def TurnTest < Minitest::Test
   end
 
   def test_it_can_determine_type
+    skip
     assert_equal :basic, @turn_basic.type
     assert_equal :war, @turn_war.type
     assert_equal :mutually_assured_destruction, @turn_mutually_assured_destruction.type
   end
 
   def test_it_can_determine_winner
+    skip
     assert_equal @player_1, @turn_basic.winner
     assert_equal @player_2, @turn_war.winner
     assert_equal "No Winner", @turn_mutually_assured_destruction.winner
   end
 
   def test_it_has_spoils
+    skip
     assert_equal [], @turn_basic.spoils_of_war
     assert_equal [], @turn_war.spoils_of_war
     assert_equal [], @turn_mutually_assured_destruction.spoils_of_war
   end
 
   def test_it_piles_cards
+    skip
     @turn_basic.pile_cards
 
     assert_equal [@card1, @card_3], @turn_basic.spoils_of_war
@@ -90,6 +95,7 @@ def TurnTest < Minitest::Test
   end
 
   def test_it_awards_spoils
+    skip
     @turn_basic.pile_cards
 
     assert_equal [@card_2, @card_5, @card_8], @turn_basic.player1.deck
