@@ -131,9 +131,14 @@ Type 'GO' to start the game!
     assert_equal "---- DRAW ----", game_draw.game_over
   end
 
-  # def test_start
-  # make a generate_players_unshuffled
-  # ie known game pattern, look for certain events
-  # dummy decks for draw, 1000000 turns, wins, etc
-  # end
+  def test_start
+    game_someone_lost = Game.new(@player_1, Player.new("Chaz", Deck.new([])))
+    assert_equal "*~*~*~* Megan has won the game! *~*~*~*", game_someone_lost.start
+
+    game_run_out_clock = Game.new(@player_1, @player_2_basic, 1000000)
+    assert_equal "---- DRAW ----", game_run_out_clock.start
+
+    game_draw = Game.new(Player.new("Chaz", Deck.new([@card_1, @card_2, @card_5])), Player.new("Una", Deck.new([@card_1, @card_2, @card_5])))
+    assert_equal "---- DRAW ----", game_draw.start
+  end
 end
