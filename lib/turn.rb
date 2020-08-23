@@ -33,12 +33,19 @@ class Turn
   end
 
   def pile_cards                                    # Refactor with helper methods?
-    if type == :mutually_assured_destruction
-      3.times do
-        player1.deck.remove_card
-        player2.deck.remove_card
-      end
-    elsif type == :war
+    # if type == :mutually_assured_destruction
+    #   3.times do
+    #     player1.deck.remove_card
+    #     player2.deck.remove_card
+    #   end
+    # elsif type == :war
+    #   3.times do
+    #     @spoils_of_war << player1.deck.remove_card
+    #   end
+    #   3.times do
+    #     @spoils_of_war << player2.deck.remove_card
+    #   end
+    if type == :war || type == :mutually_assured_destruction
       3.times do
         @spoils_of_war << player1.deck.remove_card
       end
@@ -52,11 +59,18 @@ class Turn
   end
 
   def award_spoils
-    winning_player = winner
-    pile_cards
-    number_of_spoils = spoils_of_war.length
-    number_of_spoils.times do
-      winning_player.deck.add_card( @spoils_of_war.shift )
+    # winning_player = winner
+    # pile_cards
+    if type != :mutually_assured_destruction
+      winning_player = winner
+      pile_cards
+      number_of_spoils = spoils_of_war.length
+      number_of_spoils.times do
+        winning_player.deck.add_card( @spoils_of_war.shift )
+      end
+    else
+      pile_cards
+      @spoils_of_war.clear
     end
   end
 end

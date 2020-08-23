@@ -95,7 +95,7 @@ class TurnTest < Minitest::Test
     setup
     @turn_mutually_assured_destruction.pile_cards
 
-    assert_equal [], @turn_mutually_assured_destruction.spoils_of_war
+    assert_equal [@card_1, @card_2, @card_5, @card_4, @card_3, @card_9], @turn_mutually_assured_destruction.spoils_of_war
     assert_equal [@card_8], @turn_mutually_assured_destruction.player1.deck.cards
     assert_equal [@card_7], @turn_mutually_assured_destruction.player2.deck.cards
   end
