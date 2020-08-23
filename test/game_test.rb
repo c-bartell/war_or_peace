@@ -90,16 +90,17 @@ Type 'GO' to start the game!
     assert_equal 26, @game.player2.deck.cards.length
   end
 
-  def test_turn_output
-
+  def test_run_turn
     m_a_d_expected = "Turn 1: *mutually assured destruction* 6 cards removed from play"
-    assert_equal m_a_d_expected, @game.turn_output(@turn_mutually_assured_destruction)
+    assert_equal m_a_d_expected, @game.run_turn(@turn_mutually_assured_destruction)
 
+    setup
     war_expected = "Turn 1: WAR - Aurora won 6 cards"
-    assert_equal war_expected, @game.turn_output(@turn_war)
+    assert_equal war_expected, @game.run_turn(@turn_war)
 
+    setup
     basic_expected = "Turn 1: Megan won 2 cards"
-    assert_equal basic_expected, @game.turn_output(@turn_basic)
+    assert_equal basic_expected, @game.run_turn(@turn_basic)
   end
 
   # def test_continue?
@@ -113,5 +114,6 @@ Type 'GO' to start the game!
   # def test_start
   # make a generate_players_unshuffled
   # ie known game pattern, look for certain events
+  # dummy decks for draw, 1000000 turns, wins, etc
   # end
 end

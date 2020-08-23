@@ -1,14 +1,10 @@
 class Game
-  #turn message
-  #continue?
-  #game_over
-  #start
-
-  attr_reader :player1, :player2, :greeting
+  attr_reader :player1, :player2, :greeting, :turn_number
 
   def initialize
     @player1 = nil
     @player2 = nil
+    @turn_number = 1
     @greeting = "Welcome to War! (or Peace) This game will be played with 52 cards.
 The players today are Megan and Aurora.
 Type 'GO' to start the game!
@@ -50,4 +46,27 @@ Type 'GO' to start the game!
     @player1 = Player.new("Megan", deck1)
     @player2 = Player.new("Aurora", deck2)
   end
+
+  def run_turn(turn)
+    output = nil
+    type = turn.type
+    turn_string = "Turn #{turn_number}:"
+
+    turn.award_spoils
+    num_of_spoils = turn.number_of_spoils
+
+    if type == :mutually_assured_destruction
+      output = "#{turn_string} *mutually assured destruction* #{num_of_spoils} cards removed from play"
+    elsif type == :war
+      winning_player = turn.winning_player.name
+      output = "#{turn_string} WAR - #{turn.winning_player.name} won #{num_of_spoils} cards"
+    else # :basic
+      output = "#{turn_string} #{turn.winning_player.name} won #{num_of_spoils} cards"
+    end
+
+    @turn_number += 1
+    p output
+  end
+
+
 end
