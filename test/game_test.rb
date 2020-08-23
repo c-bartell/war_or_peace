@@ -120,9 +120,16 @@ Type 'GO' to start the game!
     assert game_continue.continue?
   end
 
-  # def test_game_over
-  #
-  # end
+  def test_game_over
+    game_someone_wins = thing
+    assert_equal "*~*~*~* Aurora has won the game! *~*~*~*", game_someone_wins.game_over
+
+    game_run_out_clock = Game.new(@player_1, @player_2_basic, 1000001)
+    assert_equal "---- DRAW ----", game_run_out_clock.game_over
+
+    game_draw = Game.new(Player.new("Chaz", Deck.new([])), Player.new("Una", Deck.new([])))
+    assert_equal "---- DRAW ----", game_draw.game_over
+  end
 
   # def test_start
   # make a generate_players_unshuffled
