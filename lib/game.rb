@@ -1,10 +1,10 @@
 class Game
   attr_reader :player1, :player2, :greeting, :turn_number
 
-  def initialize
-    @player1 = nil
-    @player2 = nil
-    @turn_number = 1
+  def initialize(player1 = nil, player2 = nil, turn_number = 1)
+    @player1 = player1
+    @player2 = player2
+    @turn_number = turn_number
     @greeting = "Welcome to War! (or Peace) This game will be played with 52 cards.
 The players today are Megan and Aurora.
 Type 'GO' to start the game!
@@ -68,5 +68,13 @@ Type 'GO' to start the game!
     p output
   end
 
-
+  def continue?
+    if turn_number > 1000000
+      false
+    elsif player1.has_lost? || player2.has_lost?
+      false
+    else
+      true
+    end
+  end
 end
