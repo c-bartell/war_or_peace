@@ -12,7 +12,7 @@ class GameTest < Minitest::Test
   end
 
   def test_it_exists
-    assert_instance_of Game, game
+    assert_instance_of Game, @game
   end
 
   def test_greeting
@@ -31,7 +31,7 @@ Type 'GO' to start the game!
     test_card_3 = Card.new(:club, 'King', 13)
     test_card_4 = Card.new(:diamond, '7', 7)
 
-    test_deck = game.standard_deck
+    test_deck = @game.standard_deck
 
     assert_equal 52, test_deck.length
 
@@ -48,9 +48,9 @@ Type 'GO' to start the game!
   def test_generate_players
     game.generate_players
 
-    assert_equal "Megan", game.player1.name
-    assert_equal "Aurora", game.player2.name
-    assert_equal 26, game.player1.deck.length
-    assert_equal 26, game.player2.deck.length
+    assert_equal "Megan", @game.player1.name
+    assert_equal "Aurora", @game.player2.name
+    assert_equal 26, @game.player1.deck.length
+    assert_equal 26, @game.player2.deck.length
   end
 end
