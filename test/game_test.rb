@@ -47,9 +47,9 @@ class GameTest < Minitest::Test
 The players today are Megan and Aurora.
 Type 'GO' to start the game!
 ------------------------------------------------------------------"
-    actual = @game.greeting
+    @game.generate_players
 
-    assert_equal expected, actual
+    assert_equal expected, @game.greeting
   end
 
   def test_standard_deck

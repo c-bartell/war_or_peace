@@ -1,5 +1,5 @@
 class Game
-  attr_reader :player1, :player2, :greeting, :turn_number
+  attr_reader :player1, :player2, :turn_number
 
   def initialize(player1 = nil, player2 = nil, turn_number = 1)
     @player1 = player1
@@ -11,6 +11,13 @@ Type 'GO' to start the game!
 ------------------------------------------------------------------"
   end
 
+  def greeting
+    p "Welcome to War! (or Peace) This game will be played with 52 cards.
+The players today are #{player1.name} and #{player2.name}.
+Type 'GO' to start the game!
+------------------------------------------------------------------"
+  end
+  
   def standard_deck
     suits = [:spade, :heart, :club, :diamond]
     ranks = []
@@ -87,4 +94,6 @@ Type 'GO' to start the game!
       p "*~*~*~* #{winner} has won the game! *~*~*~*"
     end
   end
+
+
 end
