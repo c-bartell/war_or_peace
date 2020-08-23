@@ -1,10 +1,12 @@
 class Turn
-  attr_reader :player1, :player2, :spoils_of_war
+  attr_reader :player1, :player2, :spoils_of_war, :winning_player, :number_of_spoils
 
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
     @spoils_of_war = []
+    @winning_player = winner
+    @number_of_spoils = nil
   end
 
   def type
@@ -24,21 +26,16 @@ class Turn
 
   def winner
     if type == :mutually_assured_destruction
-      "No Winner"
+      @winning_player = "No Winner"
     elsif type == :war
-      bigger_player_at(2)
-    else    # :basic case
-      bigger_player_at(0)
+      @winning_player = bigger_player_at(2)
+    else
+      @winning_player = bigger_player_at(0)
     end
   end
 
-  def pile_cards                                    # Refactor with helper methods?
-    if type == :mutually_assured_destruction
-      3.times do
-        player1.deck.remove_card
-        player2.deck.remove_card
-      end
-    elsif type == :war
+  def pile_cards
+    if type == :war || type == :mutually_assured_destruction
       3.times do
         @spoils_of_war << player1.deck.remove_card
       end
@@ -49,14 +46,20 @@ class Turn
       @spoils_of_war << player1.deck.remove_card
       @spoils_of_war << player2.deck.remove_card
     end
+    @number_of_spoils = spoils_of_war.length
   end
 
   def award_spoils
-    winning_player = winner
-    pile_cards
-    number_of_spoils = spoils_of_war.length
-    number_of_spoils.times do
-      winning_player.deck.add_card( @spoils_of_war.shift )
+    if type != :mutually_assured_destruction
+      pile_cards
+      number_of_spoils = spoils_of_war.length
+      number_of_spoils.times do
+        winning_player.deck.add_card( @spoils_of_war.shift )
+      end
+    else
+      pile_cards
+
+      @spoils_of_war.clear
     end
   end
 end
