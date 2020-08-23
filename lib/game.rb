@@ -1,15 +1,18 @@
 class Game
-  #greeting
   #turn message
   #continue?
   #game_over
   #start
 
-  attr_reader :player1, :player2
+  attr_reader :player1, :player2, :greeting
 
   def initialize
     @player1 = nil
     @player2 = nil
+    @greeting = "Welcome to War! (or Peace) This game will be played with 52 cards.
+The players today are Megan and Aurora.
+Type 'GO' to start the game!
+------------------------------------------------------------------"
   end
 
   def standard_deck
