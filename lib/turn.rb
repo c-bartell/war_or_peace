@@ -29,12 +29,12 @@ class Turn
       @winning_player = "No Winner"
     elsif type == :war
       @winning_player = bigger_player_at(2)
-    else    # :basic case
+    else
       @winning_player = bigger_player_at(0)
     end
   end
 
-  def pile_cards                                    # Refactor with helper methods?
+  def pile_cards
     if type == :war || type == :mutually_assured_destruction
       3.times do
         @spoils_of_war << player1.deck.remove_card
