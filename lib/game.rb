@@ -5,10 +5,6 @@ class Game
     @player1 = player1
     @player2 = player2
     @turn_number = turn_number
-    @greeting = "Welcome to War! (or Peace) This game will be played with 52 cards.
-The players today are Megan and Aurora.
-Type 'GO' to start the game!
-------------------------------------------------------------------"
   end
 
   def greeting
@@ -17,7 +13,7 @@ The players today are #{player1.name} and #{player2.name}.
 Type 'GO' to start the game!
 ------------------------------------------------------------------"
   end
-  
+
   def standard_deck
     suits = [:spade, :heart, :club, :diamond]
     ranks = []
@@ -95,5 +91,23 @@ Type 'GO' to start the game!
     end
   end
 
+  def start
+    user_input = ''
+    while user_input != 'GO'
+      greeting
+      user_input = gets.chomp
+    end
+
+    if player1 == nil && player2 == nil
+      generate_players
+    end
+
+    while continue?
+      turn = Turn.new(player1, player2)
+      run_turn(turn)
+    end
+
+    game_over
+  end
 
 end
