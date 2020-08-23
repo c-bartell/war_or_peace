@@ -114,15 +114,15 @@ Type 'GO' to start the game!
     assert_equal false, game_draw.continue?
 
     game_someone_lost = Game.new(@player_1, Player.new("Chaz", Deck.new([])))
-    assert_equal false, game_draw.continue?
+    assert_equal false, game_someone_lost.continue?
 
     game_continue = Game.new(@player_1, @player_2_basic)
     assert game_continue.continue?
   end
 
   def test_game_over
-    game_someone_wins = thing
-    assert_equal "*~*~*~* Aurora has won the game! *~*~*~*", game_someone_wins.game_over
+    game_someone_lost = Game.new(@player_1, Player.new("Chaz", Deck.new([])))
+    assert_equal "*~*~*~* Megan has won the game! *~*~*~*", game_someone_lost.game_over
 
     game_run_out_clock = Game.new(@player_1, @player_2_basic, 1000001)
     assert_equal "---- DRAW ----", game_run_out_clock.game_over

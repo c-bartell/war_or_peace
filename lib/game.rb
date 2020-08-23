@@ -77,4 +77,14 @@ Type 'GO' to start the game!
       true
     end
   end
+
+  def game_over
+    if turn_number > 1000000 || (player1.has_lost? && player2.has_lost?)
+      p "---- DRAW ----"
+    else
+      winner = player1.name if player2.has_lost?
+      winner = player2.name if player1.has_lost?
+      p "*~*~*~* #{winner} has won the game! *~*~*~*"
+    end
+  end
 end
