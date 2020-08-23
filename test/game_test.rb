@@ -44,4 +44,13 @@ Type 'GO' to start the game!
     assert_equal test_card_1, test_deck[37]
     assert_equal test_card_1, test_deck[44]
   end
+
+  def test_generate_players
+    game.generate_players
+
+    assert_equal "Megan", game.player1.name
+    assert_equal "Aurora", game.player2.name
+    assert_equal 26, game.player1.deck.length
+    assert_equal 26, game.player2.deck.length
+  end
 end
