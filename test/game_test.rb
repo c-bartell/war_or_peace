@@ -15,6 +15,16 @@ class GameTest < Minitest::Test
     assert_instance_of Game, game
   end
 
+  def test_greeting
+    expected = "Welcome to War! (or Peace) This game will be played with 52 cards.
+The players today are Megan and Aurora.
+Type 'GO' to start the game!
+------------------------------------------------------------------"
+    actual = game.greeting
+
+    assert_equal expected, actual
+  end
+
   def test_standard_deck
     test_card_1 = Card.new(:spade, 'Ace', 14)
     test_card_2 = Card.new(:heart, '4', 4)
@@ -33,5 +43,5 @@ class GameTest < Minitest::Test
     assert_equal test_card_1, test_deck[15]
     assert_equal test_card_1, test_deck[37]
     assert_equal test_card_1, test_deck[44]
-  end  
+  end
 end
