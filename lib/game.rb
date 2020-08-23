@@ -92,14 +92,14 @@ Type 'GO' to start the game!
   end
 
   def start
+    if player1 == nil && player2 == nil
+      generate_players
+    end
+
     user_input = ''
     while user_input != 'GO'
       greeting
       user_input = gets.chomp
-    end
-
-    if player1 == nil && player2 == nil
-      generate_players
     end
 
     while continue?
