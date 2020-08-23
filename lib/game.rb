@@ -1,9 +1,7 @@
 class Game
-  #vars: names, players,
   #greeting
-  #generate players
-  #standard deck
   #turn message
+  #continue?
   #game_over
   #start
 
@@ -39,5 +37,14 @@ class Game
     end
 
     deck_array
+  end
+
+  def generate_players
+    starting_cards = standard_deck.shuffle
+    deck1 = Deck.new(starting_cards[0..25])
+    deck2 = Deck.new(starting_cards[26..-1])
+
+    @player1 = Player.new("Megan", deck1)
+    @player2 = Player.new("Aurora", deck2)
   end
 end

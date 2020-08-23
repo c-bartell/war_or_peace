@@ -53,12 +53,14 @@ Type 'GO' to start the game!
   end
 
   def test_generate_players
-    skip
-    game.generate_players
+    assert_nil @game.player1
+    assert_nil @game.player2
+
+    @game.generate_players
 
     assert_equal "Megan", @game.player1.name
     assert_equal "Aurora", @game.player2.name
-    assert_equal 26, @game.player1.deck.length
-    assert_equal 26, @game.player2.deck.length
+    assert_equal 26, @game.player1.deck.cards.length
+    assert_equal 26, @game.player2.deck.cards.length
   end
 end
