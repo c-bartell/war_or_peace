@@ -16,12 +16,11 @@ class GameTest < Minitest::Test
   end
 
   def test_greeting
-    skip
     expected = "Welcome to War! (or Peace) This game will be played with 52 cards.
 The players today are Megan and Aurora.
 Type 'GO' to start the game!
 ------------------------------------------------------------------"
-    actual = game.greeting
+    actual = @game.greeting
 
     assert_equal expected, actual
   end
@@ -63,4 +62,20 @@ Type 'GO' to start the game!
     assert_equal 26, @game.player1.deck.cards.length
     assert_equal 26, @game.player2.deck.cards.length
   end
+
+  # def test_turn_output
+  #
+  # end
+
+  # def test_continue?
+  #
+  # end
+
+  # def test_game_over
+  #
+  # end
+
+  # def test_start
+  #
+  # end
 end
