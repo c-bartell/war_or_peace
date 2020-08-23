@@ -101,11 +101,24 @@ Type 'GO' to start the game!
     setup
     basic_expected = "Turn 1: Megan won 2 cards"
     assert_equal basic_expected, @game.run_turn(@turn_basic)
+    assert_equal 2, @game.turn_number
   end
 
-  # def test_continue?
-  #
-  # end
+  def test_continue?
+    game_run_out_clock = Game.new(@player_1, @player_2_basic, 1000000)
+    assert game_run_out_clock.continue?
+    game_run_out_clock.run_turn(Turn.new(game_run_out_clock.player1, game_run_out_clock.player2))
+    assert_equal false, game_run_out_clock.continue?
+
+    game_draw = Game.new(Player.new("Chaz", Deck.new([])), Player.new("Una", Deck.new([])))
+    assert_equal false, game_draw.continue?
+
+    game_someone_lost = Game.new(@player_1, Player.new("Chaz", Deck.new([])))
+    assert_equal false, game_draw.continue?
+
+    game_continue = Game.new(@player_1, @player_2_basic)
+    assert game_continue.continue?
+  end
 
   # def test_game_over
   #
